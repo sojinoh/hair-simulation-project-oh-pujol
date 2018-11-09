@@ -1,0 +1,764 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		70063BCBC0EE418CB70580BE /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2BC770096B2E4A14A50BC3E3 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				88B9AF5215414EA8B7A15987 /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		97361386CA4948EB90285FE3 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 0780F0D31E8544D5B672155B /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				CB6C8275BE094F5CAE18D2DB /* CMake Rules */,
+			);
+			dependencies = (
+				EE46E0DE17FB4359994C3409 /* PBXTargetDependency */,
+				2928770B99B74490B6115A7D /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		079F2F63F18840FDAB3EACF0 /* ExampleApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7CF1C6BE6D4CE1951491B0 /* ExampleApp.cpp */; };
+		1E4B111CCB28427FA29192BF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66D2EEF88C0454CA8D600B8 /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1354DBF5F15F4FE2B08AEEF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EB4435212AD455081456836 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70063BCBC0EE418CB70580BE;
+			remoteInfo = ZERO_CHECK;
+		};
+		EDB9D989EEE34EECA39AEDA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EB4435212AD455081456836 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70063BCBC0EE418CB70580BE;
+			remoteInfo = ZERO_CHECK;
+		};
+		F0C5CD36F0144E75855C30F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EB4435212AD455081456836 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B3780D2068404806A539EF45;
+			remoteInfo = "basicgraphics-example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		060A879242614895A3E1E623 /* CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		5AEDA6EA4BEE4B8980100142 /* CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		6CBAC503BC9248E695A2B0B6 /* basicgraphics-example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = "basicgraphics-example"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA7CF1C6BE6D4CE1951491B0 /* ExampleApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ExampleApp.cpp; path = src/ExampleApp.cpp; sourceTree = SOURCE_ROOT; };
+		BAF62FA19F6648C7A50D6ED9 /* ExampleApp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ExampleApp.h; path = src/ExampleApp.h; sourceTree = SOURCE_ROOT; };
+		D66D2EEF88C0454CA8D600B8 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
+		F964B559749941689EA39B03 /* README.md */ = {isa = PBXFileReference; explicitFileType = sourcecode; fileEncoding = 4; path = README.md; sourceTree = SOURCE_ROOT; };
+		FEC8387F2187B2FC00502E52 /* cyHairFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cyHairFile.h; path = src/cyHairFile.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		3A65FCAA87284D009692C0CC = {
+			isa = PBXGroup;
+			children = (
+				C600E1F46C52451384D28F3B /* basicgraphics-example */,
+				B6B8EF00B3CF4CE699606BCB /* ALL_BUILD */,
+				B29103723EA64B7ABB88EBE1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4415137BBB9C40F29283B646 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				FEC8387F2187B2FC00502E52 /* cyHairFile.h */,
+				BAF62FA19F6648C7A50D6ED9 /* ExampleApp.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		80F51BFBF40146BBB34981BB /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				AA7CF1C6BE6D4CE1951491B0 /* ExampleApp.cpp */,
+				D66D2EEF88C0454CA8D600B8 /* main.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		8C6B7840C1334CEB9FF8E142 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		B29103723EA64B7ABB88EBE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6CBAC503BC9248E695A2B0B6 /* basicgraphics-example */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6B8EF00B3CF4CE699606BCB /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				8C6B7840C1334CEB9FF8E142 /* CMake Rules */,
+				060A879242614895A3E1E623 /* CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		C600E1F46C52451384D28F3B /* basicgraphics-example */ = {
+			isa = PBXGroup;
+			children = (
+				80F51BFBF40146BBB34981BB /* Source Files */,
+				4415137BBB9C40F29283B646 /* Header Files */,
+				5AEDA6EA4BEE4B8980100142 /* CMakeLists.txt */,
+				F964B559749941689EA39B03 /* README.md */,
+			);
+			name = "basicgraphics-example";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B3780D2068404806A539EF45 /* basicgraphics-example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA0CA4771DFE4162BB61FBB3 /* Build configuration list for PBXNativeTarget "basicgraphics-example" */;
+			buildPhases = (
+				1836B36C2D324590B84483EA /* Sources */,
+				6572A5FFC7D24DAC9AF4560E /* CMake PostBuild Rules */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D78986CE5104364908372A5 /* PBXTargetDependency */,
+			);
+			name = "basicgraphics-example";
+			productName = "basicgraphics-example";
+			productReference = 6CBAC503BC9248E695A2B0B6 /* basicgraphics-example */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1EB4435212AD455081456836 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1000;
+			};
+			buildConfigurationList = BD4F46525B144A39BEA92AB5 /* Build configuration list for PBXProject "basicgraphics-example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3A65FCAA87284D009692C0CC;
+			projectDirPath = ../;
+			projectRoot = "";
+			targets = (
+				97361386CA4948EB90285FE3 /* ALL_BUILD */,
+				70063BCBC0EE418CB70580BE /* ZERO_CHECK */,
+				B3780D2068404806A539EF45 /* basicgraphics-example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6572A5FFC7D24DAC9AF4560E /* CMake PostBuild Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake PostBuild Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build -f /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build/CMakeScripts/basicgraphics-example_postBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		88B9AF5215414EA8B7A15987 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build -f /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		CB6C8275BE094F5CAE18D2DB /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build -f /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1836B36C2D324590B84483EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				079F2F63F18840FDAB3EACF0 /* ExampleApp.cpp in Sources */,
+				1E4B111CCB28427FA29192BF /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2928770B99B74490B6115A7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B3780D2068404806A539EF45 /* basicgraphics-example */;
+			targetProxy = F0C5CD36F0144E75855C30F5 /* PBXContainerItemProxy */;
+		};
+		6D78986CE5104364908372A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70063BCBC0EE418CB70580BE /* ZERO_CHECK */;
+			targetProxy = 1354DBF5F15F4FE2B08AEEF7 /* PBXContainerItemProxy */;
+		};
+		EE46E0DE17FB4359994C3409 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70063BCBC0EE418CB70580BE /* ZERO_CHECK */;
+			targetProxy = EDB9D989EEE34EECA39AEDA9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0F5386EFE8E84713B2C86107 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build/build";
+			};
+			name = RelWithDebInfo;
+		};
+		0FE8459397064525AA9A9465 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Release;
+		};
+		1BF1E31174834F1BBE85D542 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				FRAMEWORK_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",
+					USE_OPENGL,
+					USE_Assimp,
+					USE_SOIL,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNDEBUG",
+					"'-std=gnu++11'",
+				);
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libBasicGraphics.a,
+					"/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/minvr/build/install/lib/MinVR-2.0/libMinVRd.a",
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					"-framework",
+					CoreFoundation,
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libassimp.dylib,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libIrrXML.a,
+					/usr/lib/libz.dylib,
+					/usr/lib/libz.dylib,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libSOIL.a,
+					"-framework",
+					CoreFoundation,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "basicgraphics-example";
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				SYSTEM_HEADER_SEARCH_PATHS = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include/BasicGraphics /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include/BasicGraphics/glm /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/minvr/build/install/include/MinVR-2.0";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = MinSizeRel;
+		};
+		2D3B73E65F3C4D929739A38E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Debug;
+		};
+		368B546F346F4BE5BDC00D73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Release;
+		};
+		415AF22708E346F69E39A4D7 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build/build";
+			};
+			name = MinSizeRel;
+		};
+		5A7DEC4BAE1F40F88B6BF513 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = MinSizeRel;
+		};
+		7955F40DA3614CB6B9FE38DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Debug;
+		};
+		8617B19A1CA04EA3BDDE0A29 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = RelWithDebInfo;
+		};
+		8BB1610CA3F9410493BF522C /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = MinSizeRel;
+		};
+		91AF3AACF2FB46DCA3D58A27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build/build";
+			};
+			name = Debug;
+		};
+		97DDCBF3F45142AABD4817BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build/build";
+			};
+			name = Release;
+		};
+		A25D0DCB90D2402AB05D88EF /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = RelWithDebInfo;
+		};
+		AF5C04340C3242F4972DE02D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				FRAMEWORK_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",
+					USE_OPENGL,
+					USE_Assimp,
+					USE_SOIL,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNDEBUG",
+					"'-std=gnu++11'",
+				);
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libBasicGraphics.a,
+					"/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/minvr/build/install/lib/MinVR-2.0/libMinVRd.a",
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					"-framework",
+					CoreFoundation,
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libassimp.dylib,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libIrrXML.a,
+					/usr/lib/libz.dylib,
+					/usr/lib/libz.dylib,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libSOIL.a,
+					"-framework",
+					CoreFoundation,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "basicgraphics-example";
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				SYSTEM_HEADER_SEARCH_PATHS = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include/BasicGraphics /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include/BasicGraphics/glm /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/minvr/build/install/include/MinVR-2.0";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Release;
+		};
+		B0DAD0AA772F475495ABC877 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				FRAMEWORK_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",
+					USE_OPENGL,
+					USE_Assimp,
+					USE_SOIL,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNDEBUG",
+					"'-std=gnu++11'",
+				);
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libBasicGraphics.a,
+					"/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/minvr/build/install/lib/MinVR-2.0/libMinVRd.a",
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					"-framework",
+					CoreFoundation,
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libassimp.dylib,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libIrrXML.a,
+					/usr/lib/libz.dylib,
+					/usr/lib/libz.dylib,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libSOIL.a,
+					"-framework",
+					CoreFoundation,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "basicgraphics-example";
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				SYSTEM_HEADER_SEARCH_PATHS = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include/BasicGraphics /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include/BasicGraphics/glm /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/minvr/build/install/include/MinVR-2.0";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = RelWithDebInfo;
+		};
+		C013AFABC6A14F1A84E3AB39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				FRAMEWORK_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",
+					USE_OPENGL,
+					USE_Assimp,
+					USE_SOIL,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "   '-std=gnu++11'  ";
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libBasicGraphics.a,
+					"/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/minvr/build/install/lib/MinVR-2.0/libMinVRd.a",
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					"-framework",
+					CoreFoundation,
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libassimp.dylib,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libIrrXML.a,
+					/usr/lib/libz.dylib,
+					/usr/lib/libz.dylib,
+					/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/lib/libSOIL.a,
+					"-framework",
+					CoreFoundation,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "basicgraphics-example";
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build";
+				SYSTEM_HEADER_SEARCH_PATHS = "/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include/BasicGraphics /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics/build/install/include/BasicGraphics/glm /Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/minvr/build/install/include/MinVR-2.0";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0780F0D31E8544D5B672155B /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D3B73E65F3C4D929739A38E /* Debug */,
+				368B546F346F4BE5BDC00D73 /* Release */,
+				8BB1610CA3F9410493BF522C /* MinSizeRel */,
+				A25D0DCB90D2402AB05D88EF /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2BC770096B2E4A14A50BC3E3 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7955F40DA3614CB6B9FE38DF /* Debug */,
+				0FE8459397064525AA9A9465 /* Release */,
+				5A7DEC4BAE1F40F88B6BF513 /* MinSizeRel */,
+				8617B19A1CA04EA3BDDE0A29 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BD4F46525B144A39BEA92AB5 /* Build configuration list for PBXProject "basicgraphics-example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91AF3AACF2FB46DCA3D58A27 /* Debug */,
+				97DDCBF3F45142AABD4817BD /* Release */,
+				415AF22708E346F69E39A4D7 /* MinSizeRel */,
+				0F5386EFE8E84713B2C86107 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CA0CA4771DFE4162BB61FBB3 /* Build configuration list for PBXNativeTarget "basicgraphics-example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C013AFABC6A14F1A84E3AB39 /* Debug */,
+				AF5C04340C3242F4972DE02D /* Release */,
+				1BF1E31174834F1BBE85D542 /* MinSizeRel */,
+				B0DAD0AA772F475495ABC877 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1EB4435212AD455081456836 /* Project object */;
+}
