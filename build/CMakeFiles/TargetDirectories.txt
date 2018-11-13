@@ -1,3 +1,0 @@
-/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build/CMakeFiles/basicgraphics-example.dir
-/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build/CMakeFiles/ALL_BUILD.dir
-/Users/sojinoh/Dropbox/MAC/2018Fall/Graphics/code/basicgraphics-example/build/CMakeFiles/ZERO_CHECK.dir
