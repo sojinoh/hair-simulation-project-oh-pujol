@@ -26,7 +26,7 @@ AutoBuild_init()
 
 #---------------------- Source for this Project ----------------------
 
-project(basicgraphics-example)
+project(hair-simulation)
 
 message(STATUS "==== BUILDING ${PROJECT_NAME}")
 message(STATUS "Using install prefix: ${CMAKE_INSTALL_PREFIX}")
@@ -40,6 +40,7 @@ set(source_files
 
 set(header_files
   src/ExampleApp.h
+  src/cyHairFile.h
 )
 
 set(extra_files
@@ -100,10 +101,10 @@ if (WIN32)
 endif(WIN32)
 
 #copy resource files to build folder so that the executable can find them in the working directory
-#add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-#                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-#                       ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:${PROJECT_NAME}>
-#					   )
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                       ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:${PROJECT_NAME}>
+					   )
 			
 #copy the basic graphics resources to the build directory			
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
