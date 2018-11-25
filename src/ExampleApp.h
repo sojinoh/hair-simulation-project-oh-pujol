@@ -63,19 +63,12 @@ private:
     
     void LoadHairModel( const char *filename, cyHairFile &hairfile, float *&dirs );
     void DrawHairModel( const cyHairFile &hairfile, float *dirs );
-    
-	std::unique_ptr<Box> _box;
-	float _angle;
 
-	double _lastTime;
-	double _curFrameTime;
+	//double _lastTime;
+	//double _curFrameTime;
 
 	virtual void reloadShaders();
 	GLSLProgram _shader;
-	void initializeText();
-	void drawText(const std::string text, float xPos, float yPos, GLfloat windowHeight, GLfloat windowWidth);
-	struct FONScontext* fs;
-	GLSLProgram _textShader;
 };
 
 
