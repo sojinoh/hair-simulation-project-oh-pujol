@@ -164,6 +164,9 @@ void ExampleApp::onRenderGraphicsScene(const VRGraphicsState &renderState) {
 	_shader.setUniform("model_mat", model);
 	_shader.setUniform("normal_mat", mat3(transpose(inverse(model))));
 	_shader.setUniform("eye_world", eye_world);
+    cyHairFile cyHair = new cyHairFile();
+    LoadHairModel("hair", cyHairFile.h,);
+    DrawHairModel();
 }
 
 void ExampleApp::LoadHairModel( const char *filename, cyHairFile &hairfile, float *&dirs )

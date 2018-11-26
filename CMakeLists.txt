@@ -47,6 +47,8 @@ set(extra_files
   README.md
   resources/hair.frag
   resources/hair.vert
+  resources/straight.hair
+  resources/wStraight.hair
 )
 
 set_source_files_properties(${extra_files} PROPERTIES HEADER_FILE_ONLY TRUE)
