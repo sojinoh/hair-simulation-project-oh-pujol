@@ -1,4 +1,5 @@
 #include "ExampleApp.h"
+#include <string.h>
 #include "cyHairFile.h"
 
 #define FONTSTASH_IMPLEMENTATION
@@ -164,9 +165,10 @@ void ExampleApp::onRenderGraphicsScene(const VRGraphicsState &renderState) {
 	_shader.setUniform("model_mat", model);
 	_shader.setUniform("normal_mat", mat3(transpose(inverse(model))));
 	_shader.setUniform("eye_world", eye_world);
-    cyHairFile cyHair = new cyHairFile();
-    LoadHairModel("hair", cyHairFile.h,);
-    DrawHairModel();
+    
+    
+    //cyHairFile cyHair = LoadHairModel("straight.hair", straight.hair);
+    //DrawHairModel(cyHair);
 }
 
 void ExampleApp::LoadHairModel( const char *filename, cyHairFile &hairfile, float *&dirs )
