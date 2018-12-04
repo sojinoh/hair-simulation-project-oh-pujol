@@ -17,6 +17,7 @@ ExampleApp::ExampleApp(int argc, char** argv) : VRApp(argc, argv)
 
 ExampleApp::~ExampleApp()
 {
+    delete[]dirs;
 	shutdown();
 }
 
@@ -74,8 +75,8 @@ void ExampleApp::onTrackerMove(const VRTrackerEvent &event) {
 
 void ExampleApp::reloadShaders()
 {
-    _shader.compileShader("hair.vert", GLSLShader::VERTEX);
-    _shader.compileShader("hair.frag", GLSLShader::FRAGMENT);
+    _shader.compileShader("texture.vert", GLSLShader::VERTEX);
+    _shader.compileShader("texture.frag", GLSLShader::FRAGMENT);
     _shader.link();
     _shader.use();
 }
@@ -115,20 +116,8 @@ void ExampleApp::onRenderGraphicsContext(const VRGraphicsState &renderState) {
 
 		// This load shaders from disk, we do it once when the program starts up.
 		reloadShaders();
-        /*
-        // This loads the model from a file and initializes an instance of the model class to store it
-        _modelMesh.reset(new Model("bunny.obj", 1.0, vec4(1.0)));
         
-        //Loading textures
-        //Options lightingNormal, lightingToon, lightingFunky
-        _diffuseRamp = Texture::create2DTextureFromFile("lightingToon.jpg");
-        _diffuseRamp->setTexParameteri(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        _diffuseRamp->setTexParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        
-        _specularRamp = Texture::create2DTextureFromFile("lightingToon.jpg");
-        _specularRamp->setTexParameteri(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        _specularRamp->setTexParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-         */
+        LoadHairModel("straight.hair", hair, dirs);
     }
 }
 
@@ -166,9 +155,7 @@ void ExampleApp::onRenderGraphicsScene(const VRGraphicsState &renderState) {
 	_shader.setUniform("normal_mat", mat3(transpose(inverse(model))));
 	_shader.setUniform("eye_world", eye_world);
     
-    
-    //cyHairFile cyHair = LoadHairModel("straight.hair", straight.hair);
-    //DrawHairModel(cyHair);
+     DrawHairModel(hair, dirs);
 }
 
 void ExampleApp::LoadHairModel( const char *filename, cyHairFile &hairfile, float *&dirs )
@@ -208,6 +195,8 @@ void ExampleApp::LoadHairModel( const char *filename, cyHairFile &hairfile, floa
     int pointCount = hairfile.GetHeader().point_count;
     printf("Number of hair strands = %d\n", hairCount );
     printf("Number of hair points = %d\n", pointCount );
+    
+    dirs = new float[3 * pointCount];
     // Compute directions
     if( hairfile.FillDirectionArray( dirs ) == 0 ) {
         printf("Error: Cannot compute hair directions!\n");

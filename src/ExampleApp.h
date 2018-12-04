@@ -60,6 +60,8 @@ private:
     GLuint _vaoID;
     GLuint _vertexVBO;
     GLuint _indexVBO;
+    cyHairFile hair;
+    float *dirs;
     
     void LoadHairModel( const char *filename, cyHairFile &hairfile, float *&dirs );
     void DrawHairModel( const cyHairFile &hairfile, float *dirs );
