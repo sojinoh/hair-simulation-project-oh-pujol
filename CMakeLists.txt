@@ -49,6 +49,7 @@ set(extra_files
   resources/hair.vert
   resources/straight.hair
   resources/wStraight.hair
+  resources/dark.hair
 )
 
 set_source_files_properties(${extra_files} PROPERTIES HEADER_FILE_ONLY TRUE)

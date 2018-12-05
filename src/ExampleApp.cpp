@@ -117,9 +117,9 @@ void ExampleApp::onRenderGraphicsContext(const VRGraphicsState &renderState) {
 		// This load shaders from disk, we do it once when the program starts up.
 		reloadShaders();
         
-        _modelMesh.reset(new Model("straight.hair", 1.0, vec4(1.0)));
+        _modelMesh.reset(new Model("dark.hair", 1.0, vec4(1.0)));
         
-        LoadHairModel("straight.hair", hair, dirs);
+        LoadHairModel("dark.hair", hair, dirs);
     }
 }
 
@@ -248,9 +248,9 @@ void ExampleApp::DrawHairModel( const cyHairFile &hairfile, float *dirs )
     int hairCount = hairfile.GetHeader().hair_count;
     const unsigned short *segments = hairfile.GetSegmentsArray();
     if ( segments ) {
-        std::cout <<"yes" << std::endl;
         // If segments array exists
         for ( int hairIndex=0; hairIndex < hairCount; hairIndex++ ) {
+            //std::cout <<segments[ hairIndex ]+1 << std::endl;
             glDrawArrays( GL_LINE_STRIP, pointIndex, segments[ hairIndex ]+1 );
             pointIndex += segments[ hairIndex ]+1;
         }
