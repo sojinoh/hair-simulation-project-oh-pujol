@@ -75,8 +75,8 @@ void ExampleApp::onTrackerMove(const VRTrackerEvent &event) {
 
 void ExampleApp::reloadShaders()
 {
-    _shader.compileShader("texture.vert", GLSLShader::VERTEX);
-    _shader.compileShader("texture.frag", GLSLShader::FRAGMENT);
+    _shader.compileShader("hair.vert", GLSLShader::VERTEX);
+    _shader.compileShader("hair.frag", GLSLShader::FRAGMENT);
     _shader.link();
     _shader.use();
 }
@@ -117,6 +117,8 @@ void ExampleApp::onRenderGraphicsContext(const VRGraphicsState &renderState) {
 		// This load shaders from disk, we do it once when the program starts up.
 		reloadShaders();
         
+        _modelMesh.reset(new Model("straight.hair", 1.0, vec4(1.0)));
+        
         LoadHairModel("straight.hair", hair, dirs);
     }
 }
@@ -154,6 +156,8 @@ void ExampleApp::onRenderGraphicsScene(const VRGraphicsState &renderState) {
 	_shader.setUniform("model_mat", model);
 	_shader.setUniform("normal_mat", mat3(transpose(inverse(model))));
 	_shader.setUniform("eye_world", eye_world);
+    
+    //_shader.setUniform("lightPosition", _lightPosition);
     
      DrawHairModel(hair, dirs);
 }
@@ -244,12 +248,14 @@ void ExampleApp::DrawHairModel( const cyHairFile &hairfile, float *dirs )
     int hairCount = hairfile.GetHeader().hair_count;
     const unsigned short *segments = hairfile.GetSegmentsArray();
     if ( segments ) {
+        std::cout <<"yes" << std::endl;
         // If segments array exists
         for ( int hairIndex=0; hairIndex < hairCount; hairIndex++ ) {
             glDrawArrays( GL_LINE_STRIP, pointIndex, segments[ hairIndex ]+1 );
             pointIndex += segments[ hairIndex ]+1;
         }
     } else {
+        std::cout <<"no" << std::endl;
         // If segments array does not exist, use default segment count
         int dsegs = hairfile.GetHeader().d_segments;
         for ( int hairIndex=0; hairIndex < hairCount; hairIndex++ ) {

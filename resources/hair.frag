@@ -31,6 +31,7 @@ uniform float specularExponent;
 
 void main() {
 
+    /*
     // Start with black and then add lighting to the final color as we calculate it
 	vec3 finalColor = vec3(0.0, 0.0, 0.0);
 
@@ -58,9 +59,10 @@ void main() {
     }
     
     finalColor += ambient + diffuse + specular;
+     */
     
 	// Tell OpenGL to use the r,g,b compenents of finalColor for the color of this fragment (pixel).
-    fragColor.rgb = finalColor;
+    fragColor.rgb = vec3(1.0,1.0,1.0);
 
 	// And, set the alpha component to 1.0 (completely opaque, no transparency).
 	fragColor.a = 1.0;

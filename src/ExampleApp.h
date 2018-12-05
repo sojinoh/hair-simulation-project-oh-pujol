@@ -65,9 +65,13 @@ private:
     
     void LoadHairModel( const char *filename, cyHairFile &hairfile, float *&dirs );
     void DrawHairModel( const cyHairFile &hairfile, float *dirs );
+    
+    std::unique_ptr<Model> _modelMesh;
 
 	//double _lastTime;
 	//double _curFrameTime;
+    
+    glm::vec4 _lightPosition;
 
 	virtual void reloadShaders();
 	GLSLProgram _shader;
