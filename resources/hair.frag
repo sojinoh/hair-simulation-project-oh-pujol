@@ -62,7 +62,7 @@ void main() {
      */
     
 	// Tell OpenGL to use the r,g,b compenents of finalColor for the color of this fragment (pixel).
-    fragColor.rgb = vec3(1.0,1.0,1.0);
+    fragColor.rgb = vec3(.75,0,.75);
 
 	// And, set the alpha component to 1.0 (completely opaque, no transparency).
 	fragColor.a = 1.0;

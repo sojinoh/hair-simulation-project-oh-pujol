@@ -7,6 +7,7 @@ using namespace MinVR;
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
+#include "TurntableManipulator.h"
 
 #ifdef _WIN32
 #include "GL/glew.h"
@@ -33,13 +34,13 @@ using namespace MinVR;
 #include <BasicGraphics.h>
 using namespace basicgraphics;
 
-class ExampleApp : public VRApp {
+class HairSimulation : public VRApp {
 public:
     
     /** The constructor passes argc, argv, and a MinVR config file on to VRApp.
      */
-	ExampleApp(int argc, char** argv);
-    virtual ~ExampleApp();
+	HairSimulation(int argc, char** argv);
+    virtual ~HairSimulation();
 
     
     /** USER INTERFACE CALLBACKS **/
@@ -59,17 +60,17 @@ private:
     
     GLuint _vaoID;
     GLuint _vertexVBO;
-    GLuint _indexVBO;
     cyHairFile hair;
     float *dirs;
     
     void LoadHairModel( const char *filename, cyHairFile &hairfile, float *&dirs );
     void DrawHairModel( const cyHairFile &hairfile, float *dirs );
     
-    std::unique_ptr<Model> _modelMesh;
+    std::shared_ptr<TurntableManipulator> _turntable;
 
 	//double _lastTime;
 	//double _curFrameTime;
+    bool mouseDown;
     
     glm::vec4 _lightPosition;
 

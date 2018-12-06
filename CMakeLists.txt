@@ -35,12 +35,14 @@ message(STATUS "Using install prefix: ${CMAKE_INSTALL_PREFIX}")
 
 set(source_files
   src/main.cpp
-  src/ExampleApp.cpp
+  src/HairSimulation.cpp
+  src/TurntableManipulator.cpp
 )
 
 set(header_files
-  src/ExampleApp.h
+  src/HairSimulation.h
   src/cyHairFile.h
+  src/TurntableManipulator.h
 )
 
 set(extra_files

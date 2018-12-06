@@ -1,6 +1,7 @@
-#include "ExampleApp.h"
+#include "HairSimulation.h"
 #include <string.h>
 #include "cyHairFile.h"
+using namespace basicgraphics;
 
 #define FONTSTASH_IMPLEMENTATION
 #include <fontstash.h>
@@ -9,19 +10,22 @@
 
 #include <config/VRDataIndex.h>
 
-ExampleApp::ExampleApp(int argc, char** argv) : VRApp(argc, argv)
+HairSimulation::HairSimulation(int argc, char** argv) : VRApp(argc, argv)
 {
 	//_lastTime = 0.0;
-
+    _turntable.reset(new TurntableManipulator(150, 0.3, 0.5));
+    _turntable->setCenterPosition(vec3(0, 0, 10));
+    
+    mouseDown = false;
 }
 
-ExampleApp::~ExampleApp()
+HairSimulation::~HairSimulation()
 {
     delete[]dirs;
 	shutdown();
 }
 
-void ExampleApp::onAnalogChange(const VRAnalogEvent &event) {
+void HairSimulation::onAnalogChange(const VRAnalogEvent &event) {
     // This routine is called for all Analog_Change events.  Check event->getName()
     // to see exactly which analog input has been changed, and then access the
     // new value with event->getValue().
@@ -34,38 +38,19 @@ void ExampleApp::onAnalogChange(const VRAnalogEvent &event) {
 
 }
 
-void ExampleApp::onButtonDown(const VRButtonEvent &event) {
-    // This routine is called for all Button_Down events.  Check event->getName()
-    // to see exactly which button has been pressed down.
-	//You can respond to individual events like this:
-	/*
-    if (event.getName() == _paintOnEvent) {
-        _painting = true;
-    }
-    else if (event.getName() == _grabOnEvent) {
-        _grabbing = true;
-    }
-	*/
-
-	//std::cout << "ButtonDown: " << event.getName() << std::endl;
-
+void HairSimulation::onButtonDown(const VRButtonEvent &event) {
+    _turntable->onButtonDown(event);
 }
 
-void ExampleApp::onButtonUp(const VRButtonEvent &event) {
-    // This routine is called for all Button_Up events.  Check event->getName()
-    // to see exactly which button has been released.
-
-	//std::cout << "ButtonUp: " << event.getName() << std::endl;
+void HairSimulation::onButtonUp(const VRButtonEvent &event) {
+    _turntable->onButtonUp(event);
 }
 
-void ExampleApp::onCursorMove(const VRCursorEvent &event) {
-	// This routine is called for all mouse move events. You can get the absolute position
-	// or the relative position within the window scaled 0--1.
-	
-	//std::cout << "MouseMove: "<< event.getName() << " " << event.getPos()[0] << " " << event.getPos()[1] << std::endl;
+void HairSimulation::onCursorMove(const VRCursorEvent &event) {
+    _turntable->onCursorMove(event);
 }
 
-void ExampleApp::onTrackerMove(const VRTrackerEvent &event) {
+void HairSimulation::onTrackerMove(const VRTrackerEvent &event) {
     // This routine is called for all Tracker_Move events.  Check event->getName()
     // to see exactly which tracker has moved, and then access the tracker's new
     // 4x4 transformation matrix with event->getTransform().
@@ -73,7 +58,7 @@ void ExampleApp::onTrackerMove(const VRTrackerEvent &event) {
 	// We will use trackers when we do a virtual reality assignment. For now, you can ignore this input type.
 }
 
-void ExampleApp::reloadShaders()
+void HairSimulation::reloadShaders()
 {
     _shader.compileShader("hair.vert", GLSLShader::VERTEX);
     _shader.compileShader("hair.frag", GLSLShader::FRAGMENT);
@@ -81,7 +66,7 @@ void ExampleApp::reloadShaders()
     _shader.use();
 }
 
-void ExampleApp::onRenderGraphicsContext(const VRGraphicsState &renderState) {
+void HairSimulation::onRenderGraphicsContext(const VRGraphicsState &renderState) {
     // This routine is called once per graphics context at the start of the
     // rendering process.  So, this is the place to initialize textures,
     // load models, or do other operations that you only want to do once per
@@ -117,13 +102,11 @@ void ExampleApp::onRenderGraphicsContext(const VRGraphicsState &renderState) {
 		// This load shaders from disk, we do it once when the program starts up.
 		reloadShaders();
         
-        _modelMesh.reset(new Model("dark.hair", 1.0, vec4(1.0)));
-        
         LoadHairModel("dark.hair", hair, dirs);
     }
 }
 
-void ExampleApp::onRenderGraphicsScene(const VRGraphicsState &renderState) {
+void HairSimulation::onRenderGraphicsScene(const VRGraphicsState &renderState) {
     // This routine is called once per eye/camera.  This is the place to actually
     // draw the scene.
     
@@ -131,8 +114,8 @@ void ExampleApp::onRenderGraphicsScene(const VRGraphicsState &renderState) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	// Setup the view matrix to set where the camera is located in the scene
-	glm::vec3 eye_world = glm::vec3(0, 0, 5);
-	glm::mat4 view = glm::lookAt(eye_world, glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+	glm::vec3 eye_world = _turntable->getPos();
+	glm::mat4 view = _turntable->frame();
 	// When we use virtual reality, this will be replaced by:
 	// eye_world = glm::make_vec3(renderState.getCameraPos())
 	// view = glm::make_mat4(renderState.getViewMatrix());
@@ -140,7 +123,7 @@ void ExampleApp::onRenderGraphicsScene(const VRGraphicsState &renderState) {
 	// Setup the projection matrix so that things are rendered in perspective
 	GLfloat windowHeight = renderState.index().getValue("FramebufferHeight");
 	GLfloat windowWidth = renderState.index().getValue("FramebufferWidth");
-	glm::mat4 projection = glm::perspective(glm::radians(45.0f), windowWidth / windowHeight, 0.01f, 100.0f);
+	glm::mat4 projection = glm::perspective(glm::radians(45.0f), windowWidth / windowHeight, 0.01f, 200.0f);
 	// When we use virtual reality, this will be replaced by:
 	// projection = glm::make_mat4(renderState.getProjectionMatrix())
 	
@@ -162,7 +145,7 @@ void ExampleApp::onRenderGraphicsScene(const VRGraphicsState &renderState) {
      DrawHairModel(hair, dirs);
 }
 
-void ExampleApp::LoadHairModel( const char *filename, cyHairFile &hairfile, float *&dirs )
+void HairSimulation::LoadHairModel( const char *filename, cyHairFile &hairfile, float *&dirs )
 {
     // Load the hair model
     int result = hairfile.LoadFromFile( filename );
@@ -236,10 +219,19 @@ void ExampleApp::LoadHairModel( const char *filename, cyHairFile &hairfile, floa
     // unbind the vao
     glBindVertexArray(0);
     
-    
+    vec3 centroid(0,0,0);
+    const float* points = hairfile.GetPointsArray();
+    for ( int i=0; i < pointCount; i+=3 ) {
+        //std::cout <<segments[ hairIndex ]+1 << std::endl;
+        vec3 point = vec3 (points[i], points[i+1], points[i+2]);
+        centroid += point;
+    }
+    centroid /= pointCount;
+    cout<<"Centroid: "<< centroid.x<<" "<<centroid.y<<" "<<centroid.z<<endl;
+
 }
 
-void ExampleApp::DrawHairModel( const cyHairFile &hairfile, float *dirs )
+void HairSimulation::DrawHairModel( const cyHairFile &hairfile, float *dirs )
 {
     glBindVertexArray(_vaoID);
     
