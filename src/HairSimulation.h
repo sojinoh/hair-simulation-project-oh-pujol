@@ -73,6 +73,7 @@ private:
     bool mouseDown;
     
     glm::vec4 _lightPosition;
+    bool _drawLightVector;
 
 	virtual void reloadShaders();
 	GLSLProgram _shader;

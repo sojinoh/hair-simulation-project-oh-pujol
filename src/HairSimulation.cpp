@@ -13,9 +13,11 @@ using namespace basicgraphics;
 HairSimulation::HairSimulation(int argc, char** argv) : VRApp(argc, argv)
 {
 	//_lastTime = 0.0;
-    _turntable.reset(new TurntableManipulator(150, 0.3, 0.5));
-    _turntable->setCenterPosition(vec3(0, 0, 10));
+    _turntable.reset(new TurntableManipulator(250, 0.3, 0.5));
+    _turntable->setCenterPosition(vec3(0, 15, 10));
     
+    _lightPosition = vec4(0,-80,80,1.0);
+    _drawLightVector = true;
     mouseDown = false;
 }
 
@@ -123,7 +125,7 @@ void HairSimulation::onRenderGraphicsScene(const VRGraphicsState &renderState) {
 	// Setup the projection matrix so that things are rendered in perspective
 	GLfloat windowHeight = renderState.index().getValue("FramebufferHeight");
 	GLfloat windowWidth = renderState.index().getValue("FramebufferWidth");
-	glm::mat4 projection = glm::perspective(glm::radians(45.0f), windowWidth / windowHeight, 0.01f, 200.0f);
+	glm::mat4 projection = glm::perspective(glm::radians(45.0f), windowWidth / windowHeight, 0.01f, 500.0f);
 	// When we use virtual reality, this will be replaced by:
 	// projection = glm::make_mat4(renderState.getProjectionMatrix())
 	
@@ -140,9 +142,20 @@ void HairSimulation::onRenderGraphicsScene(const VRGraphicsState &renderState) {
 	_shader.setUniform("normal_mat", mat3(transpose(inverse(model))));
 	_shader.setUniform("eye_world", eye_world);
     
-    //_shader.setUniform("lightPosition", _lightPosition);
+    _shader.setUniform("lightPosition", _lightPosition);
     
      DrawHairModel(hair, dirs);
+    
+    // For debugging purposes, let's draw a sphere to reprsent each "light bulb" in the scene, that way
+    // we can make sure the lighting on the bunny makes sense given the position of each light source.
+    Sphere s(vec3(_lightPosition), 5.0f, vec4(1.0f, 1.0f, 0.0f, 1.0f));
+    s.draw(_shader, glm::mat4(1.0));
+    
+    // Another useful aid for debugging: draw vectors to the light sources
+    if (_drawLightVector) {
+        Cylinder l(vec3(0, -5, 10), vec3(_lightPosition), 0.3f, vec4(1.0f, 1.0f, 0.0f, 1.0f));
+        l.draw(_shader, glm::mat4(1.0));
+    }
 }
 
 void HairSimulation::LoadHairModel( const char *filename, cyHairFile &hairfile, float *&dirs )

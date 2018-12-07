@@ -12,6 +12,7 @@ uniform vec3 eye_world;
 // change for each pixel across the triangle:
 in vec4 interpSurfPosition;
 in vec3 interpSurfNormal;
+in vec3 color;
 
 // This is an out variable for the final color we want to render this fragment.
 out vec4 fragColor;
@@ -62,7 +63,12 @@ void main() {
      */
     
 	// Tell OpenGL to use the r,g,b compenents of finalColor for the color of this fragment (pixel).
-    fragColor.rgb = vec3(.75,0,.75);
+    if (color == vec3(0)){
+        fragColor.rgb = vec3(5.0,5.0,5.0);
+    }
+    else{
+        fragColor.rgb = color;
+    }
 
 	// And, set the alpha component to 1.0 (completely opaque, no transparency).
 	fragColor.a = 1.0;

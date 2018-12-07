@@ -23,12 +23,15 @@ out vec4 interpSurfPosition;
 // Normal of the current point on the surface, interpolated across the surface.
 out vec3 interpSurfNormal;
 
+out vec3 color;
+
 void main(void)
 {
     // vertex_position is a variable that holds the 3D position of the current vertex.  We want to
     // pass this position on to the fragment shader because we'll need it to calculate the lighting.
     // We're also going to do one matrix multiplication at this stage in order to convert from object to world coordinates
 	interpSurfPosition = model_mat * vec4 (vertex_position, 1.0);
+    color = vertex_color;
     
     // We also need the normal to calculate lighting.  So, we will similarly pass it on to the fragment
     // program as an "out" variable, and we'll do the same type of matrix multiplication.  However,

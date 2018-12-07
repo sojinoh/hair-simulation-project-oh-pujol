@@ -12,7 +12,7 @@ TurntableManipulator::TurntableManipulator(double d, double a, double u) {
 	distance = d;
 	around = a;
 	up = u;
-    
+
     mouseDown = false;
 }
 
@@ -80,7 +80,7 @@ glm::vec3 TurntableManipulator::getPos() const {
 
 glm::mat4 TurntableManipulator::frame() const {
     glm::vec3 pos = getPos();
-    glm::mat4 cf = glm::lookAt(pos, center, normalize(glm::vec3(0, 0, 1)));
+    glm::mat4 cf = glm::lookAt(pos, center, glm::vec3(0, 0, 1));
 	return cf;
 }
 
