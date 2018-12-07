@@ -104,7 +104,7 @@ void HairSimulation::onRenderGraphicsContext(const VRGraphicsState &renderState)
 		// This load shaders from disk, we do it once when the program starts up.
 		reloadShaders();
         
-        LoadHairModel("dark.hair", hair, dirs);
+        LoadHairModel("straight.hair", hair, dirs);
     }
 }
 
@@ -235,7 +235,6 @@ void HairSimulation::LoadHairModel( const char *filename, cyHairFile &hairfile, 
     vec3 centroid(0,0,0);
     const float* points = hairfile.GetPointsArray();
     for ( int i=0; i < pointCount; i+=3 ) {
-        //std::cout <<segments[ hairIndex ]+1 << std::endl;
         vec3 point = vec3 (points[i], points[i+1], points[i+2]);
         centroid += point;
     }
@@ -255,12 +254,10 @@ void HairSimulation::DrawHairModel( const cyHairFile &hairfile, float *dirs )
     if ( segments ) {
         // If segments array exists
         for ( int hairIndex=0; hairIndex < hairCount; hairIndex++ ) {
-            //std::cout <<segments[ hairIndex ]+1 << std::endl;
             glDrawArrays( GL_LINE_STRIP, pointIndex, segments[ hairIndex ]+1 );
             pointIndex += segments[ hairIndex ]+1;
         }
     } else {
-        std::cout <<"no" << std::endl;
         // If segments array does not exist, use default segment count
         int dsegs = hairfile.GetHeader().d_segments;
         for ( int hairIndex=0; hairIndex < hairCount; hairIndex++ ) {
