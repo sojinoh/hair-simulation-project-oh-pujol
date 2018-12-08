@@ -32,35 +32,30 @@ uniform float specularExponent;
 
 void main() {
 
-    /*
-    // Start with black and then add lighting to the final color as we calculate it
-	vec3 finalColor = vec3(0.0, 0.0, 0.0);
-
-    // TODO: Calculate ambient, diffuse, and specular lighting for this pixel based on its position, normal, etc.
-    vec3 N = normalize(interpSurfNormal);
-    vec3 E = normalize(eye_world - interpSurfPosition.xyz);
-    vec3 L = normalize(lightPosition.xyz-interpSurfPosition.xyz);
-    vec3 H = normalize(L+E);
-    float NdotH = clamp(dot(N,H), 0.0, 1.0);
-    float NdotL = clamp(dot(N,L), 0.0, 1.0);
+    //Setting parameters
+    vec3 u = ; //tangent to the hair, pointing in the direction from the root toward the tip
+    vec3 w = ; //normal to the hair, pointing toward the viewer (the geometry faces the camera)
+    vec3 v = ; //binormal to the hair, pointing such that v and w complete a right-handed orthonormal basis, and are the v–w is the normal plane
+    vec3 w_i = ; //direction of illumination (light)
+    vec3 w_r = ; //direction of camera (viewer)
+    float q_ir = ; //inclinations with respect to the normal plane (measured so that 0 is perpendicular to the hair, PI is u, and –PI is –u)
+    float f_ir = ; //azimuths around the hair (measured so that v is 0 and w is +PI)
     
+    vec3 q_i = ;
+    vec3 q_r = ;
+    vec3 f_i = ;
+    vec3 f_r = ;
     
+    q d = (q r – q i )/2; //the difference angle
+    f = (f r – f i ); //the relative azimuth
+    q h = (q i + q r )/2; //half angle
+    f h = (f i + f r )/2; //half angle
     
-    vec3 ambient = ambientReflectionCoeff * ambientLightIntensity;
-    vec3 diffuse = diffuseReflectionCoeff * diffuseLightIntensity * texture(diffuseRamp, vec2(NdotL, 0.0)).rgb;
-    vec3 specular = specularReflectionCoeff * specularLightIntensity * texture(specularRamp, vec2(pow(NdotH, specularExponent)), 0.0).rgb;
-    vec3 diffuseText;
-    vec3 specularText;
+    //Calculating M components
+    ((1.0f / (fabs(sigma) * sqrt(2.0f * PI))) *
+    exp(-(x_mu * x_mu) / (2.0f * sigma * sigma)));
     
-    if (dot(N,L) < 0){
-        diffuse = vec3(0,0,0);
-    }
-    if (dot(N,H) < 0){
-        specular = vec3(0,0,0);
-    }
-    
-    finalColor += ambient + diffuse + specular;
-     */
+    //Calculating N components
     
 	// Tell OpenGL to use the r,g,b compenents of finalColor for the color of this fragment (pixel).
     if (color == vec3(0)){
