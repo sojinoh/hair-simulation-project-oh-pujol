@@ -74,6 +74,7 @@ private:
     
     glm::vec4 _lightPosition;
     bool _drawLightVector;
+    vec3 _centroid;
 
 	virtual void reloadShaders();
 	GLSLProgram _shader;

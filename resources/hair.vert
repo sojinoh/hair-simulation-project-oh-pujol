@@ -7,12 +7,12 @@
 
 // These are "global" variables that are set with a specific value within the application code:
 uniform mat4 projection_mat, view_mat, model_mat;
-uniform mat3 normal_mat;
+uniform mat3 tangent_mat;
 
 // These variables are automatically assigned the value of each vertex and cooresponding normal and texcoord
 // as they pass through the rendering pipeline. The layout locations are based on how the VAO was organized
 layout (location = 0) in vec3 vertex_position;
-layout (location = 1) in vec3 vertex_normal;
+layout (location = 1) in vec3 vertex_tangent; // Is this the tangent? not the normal?
 layout (location = 2) in vec3 vertex_color;
 
 // OUTPUT: to the fragment shader
@@ -21,7 +21,7 @@ layout (location = 2) in vec3 vertex_color;
 out vec4 interpSurfPosition;
 
 // Normal of the current point on the surface, interpolated across the surface.
-out vec3 interpSurfNormal;
+out vec3 interpSurfTangent;
 
 out vec3 color;
 
@@ -37,7 +37,7 @@ void main(void)
     // program as an "out" variable, and we'll do the same type of matrix multiplication.  However,
     // it turns out you have to use a slightly different matrix for normals because they transform a
     // bit differently than points.
-    interpSurfNormal = normal_mat * vertex_normal;
+    interpSurfTangent = tangent_mat * vertex_tangent;
 
     // This is the last line of almost every vertex shader program.  We don't need this for our lighting
     // calculations, but it is required by OpenGl.  Whereas a fragment program must output a color

@@ -47,7 +47,8 @@ set(header_files
 
 set(extra_files
   README.md
-  resources/hair.frag
+  resources/basicHair.frag
+  resources/fancyHair.frag
   resources/hair.vert
   resources/straight.hair
   resources/wStraight.hair
