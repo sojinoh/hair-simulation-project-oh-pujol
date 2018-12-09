@@ -2,6 +2,7 @@
 #include <string.h>
 #include "cyHairFile.h"
 using namespace basicgraphics;
+using namespace glm;
 
 #define FONTSTASH_IMPLEMENTATION
 #include <fontstash.h>
@@ -64,7 +65,7 @@ void HairSimulation::onTrackerMove(const VRTrackerEvent &event) {
 void HairSimulation::reloadShaders()
 {
     _shader.compileShader("hair.vert", GLSLShader::VERTEX);
-    _shader.compileShader("basicHair.frag", GLSLShader::FRAGMENT);
+    _shader.compileShader("variationHair.frag", GLSLShader::FRAGMENT);
     _shader.link();
     _shader.use();
 }
@@ -133,12 +134,16 @@ void HairSimulation::onRenderGraphicsScene(const VRGraphicsState &renderState) {
 	// Setup the model matrix
 	glm::mat4 model = glm::mat4(1.0);
     
+    glm::mat4 lightView = lookAt(vec3(_lightPosition), vec3(0,0,0), vec3(0,1,0));
+    
 	// Tell opengl we want to use this specific shader.
 	_shader.use();
 	
 	_shader.setUniform("view_mat", view);
 	_shader.setUniform("projection_mat", projection);
 	
+    
+    _shader.setUniform("lightView", lightView);
 	_shader.setUniform("model_mat", model);
 	_shader.setUniform("tangent_mat", mat3(model));
 	_shader.setUniform("eye_world", eye_world);

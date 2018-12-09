@@ -49,9 +49,9 @@ set(extra_files
   README.md
   resources/basicHair.frag
   resources/fancyHair.frag
+  resources/variationHair.frag
   resources/hair.vert
   resources/straight.hair
-  resources/wStraight.hair
   resources/dark.hair
 )
 
