@@ -30,9 +30,10 @@ uniform vec4 lightPosition;
 
 void main() {
 
+    vec3 T = normalize(interpSurfTangent);
     vec3 E = normalize(eye_world - interpSurfPosition.xyz);
-    vec3 BN = cross(interpSurfTangent, E);
-    vec3 N = cross(BN, interpSurfTangent);
+    vec3 BN = cross(T, E);
+    vec3 N = cross(BN, T);
     vec3 L = normalize(lightPosition.xyz-interpSurfPosition.xyz);
     vec3 H = normalize(L+E);
     float NdotH = clamp(dot(N,H), 0.0, 1.0);

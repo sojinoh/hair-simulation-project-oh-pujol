@@ -30,9 +30,11 @@ uniform vec3 specularLightIntensity;
 uniform vec4 lightPosition;
 
 void main() {
+    
+    vec3 T = normalize(interpSurfTangent);
     vec3 E = normalize(eye_world - interpSurfPosition.xyz);
-    vec3 BN = cross(interpSurfTangent, E);
-    vec3 N = cross(BN, interpSurfTangent);
+    vec3 BN = cross(T, E);
+    vec3 N = cross(BN, T);
     vec3 L = normalize(lightPosition.xyz-interpSurfPosition.xyz);
     vec3 H = normalize(L+E);
     float NdotH = clamp(dot(N,H), 0.0, 1.0);
@@ -44,14 +46,11 @@ void main() {
     
 	// Tell OpenGL to use the r,g,b compenents of finalColor for the color of this fragment (pixel).
     if (color == vec3(0)){
-        fragColor.rgb = vec3(1.0,1.0,1.0);
+        fragColor = vec3(1.0,1.0,1.0,1.0);
     }
     else{
-        fragColor.rgb = color + specular;
+        fragColor = HairLighting(T, N);
     }
-
-	// And, set the alpha component to 1.0 (completely opaque, no transparency).
-	fragColor.a = 1.0;
 }
 
 vec3 ShiftTangent (vec3 T, vec3 N, float shift){
