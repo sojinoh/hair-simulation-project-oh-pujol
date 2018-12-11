@@ -84,7 +84,6 @@ glm::mat4 TurntableManipulator::frame() const {
 	return cf;
 }
 
-
 void TurntableManipulator::setCenterPosition(glm::vec3 position) {
 	center = position;
 }

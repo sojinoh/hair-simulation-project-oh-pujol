@@ -49,8 +49,6 @@ void main() {
     vec3 diffuse = diffuseReflectionCoeff * diffuseLightIntensity * NdotL;
     vec3 specular = specularReflectionCoeff * specularLightIntensity * max(0.0, ((D*F*G)/NdotE));
     
-    //Calculating N components
-    
 	// Tell OpenGL to use the r,g,b compenents of finalColor for the color of this fragment (pixel).
     if (color == vec3(0)){
         fragColor.rgb = vec3(1.0,1.0,1.0);

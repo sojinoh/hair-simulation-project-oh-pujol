@@ -68,8 +68,6 @@ private:
     
     std::shared_ptr<TurntableManipulator> _turntable;
 
-	//double _lastTime;
-	//double _curFrameTime;
     bool mouseDown;
     
     glm::vec4 _lightPosition;
@@ -81,6 +79,5 @@ private:
 	virtual void reloadShaders();
 	GLSLProgram _shader;
 };
-
 
 #endif //EXAMPLEAPP_H

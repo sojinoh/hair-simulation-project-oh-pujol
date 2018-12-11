@@ -15,13 +15,13 @@ in vec3 color;
 uniform sampler2D lookUp1;
 uniform sampler2D lookUp2;
 
-
 // This is an out variable for the final color we want to render this fragment.
 out vec4 fragColor;
 
 uniform vec4 lightPosition;
 
 void main() {
+    
     vec3 T = normalize(interpSurfTangent);
     vec3 E = normalize(eye_world - interpSurfPosition.xyz);
     vec3 L = normalize(lightPosition.xyz-interpSurfPosition.xyz);
@@ -33,7 +33,7 @@ void main() {
     vec3 angles;
     fuv1.x = dot(L, T);
     fuv1.y = dot(E, T);
-    angles.xy = 0.5 + 0.5*fuv1; // ?
+    angles.xy = 0.5 + 0.5*fuv1;
     
     vec3 lightPerp = L - fuv1.x*T;
     vec3 eyePerp = E - fuv1.y*T;
@@ -66,22 +66,6 @@ void main() {
     vec4 col;
     col.rgb = lighting + diffuseColor.rgb*0.2 + ambientColor;
     col.a = diffuseColor.a;
-    
-    /*
-    float sinThetaI = dot(L, T);
-    float sinThetaO = dot(E, T);
-    
-    vec3 lightPerp = L - sinThetaI * T;
-    vec3 eyePerp = E - sinThetaO * T;
-    float cosPhiD = dot(eyePerp, lightPerp) * pow(dot(eyePerp, eyePerp) * dot(lightPerp, lightPerp), -0.5);
-    
-    vec4 M = texture(lookUp1, vec2(sinThetaI, sinThetaO));
-    float cosThetaD = M.a;
-    
-    vec4 N = texture(lookUp2, vec2(cosPhiD, cosThetaD));
-    
-    vec3 S = vec3((M.x * N.x), (M.y * N.y), (M.z * N.z));
-     */
     
     if (color == vec3(0)){
         fragColor = vec4(1.0,1.0,1.0,1.0);

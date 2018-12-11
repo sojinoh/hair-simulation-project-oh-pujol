@@ -28,19 +28,6 @@ HairSimulation::~HairSimulation()
 	shutdown();
 }
 
-void HairSimulation::onAnalogChange(const VRAnalogEvent &event) {
-    // This routine is called for all Analog_Change events.  Check event->getName()
-    // to see exactly which analog input has been changed, and then access the
-    // new value with event->getValue().
-    
-	//if (event.getName() == "FrameStart") {
-	//	_lastTime = _curFrameTime;
-	//	_curFrameTime = event.getValue();
-	//}
-
-
-}
-
 void HairSimulation::onButtonDown(const VRButtonEvent &event) {
     _turntable->onButtonDown(event);
 }
@@ -51,14 +38,6 @@ void HairSimulation::onButtonUp(const VRButtonEvent &event) {
 
 void HairSimulation::onCursorMove(const VRCursorEvent &event) {
     _turntable->onCursorMove(event);
-}
-
-void HairSimulation::onTrackerMove(const VRTrackerEvent &event) {
-    // This routine is called for all Tracker_Move events.  Check event->getName()
-    // to see exactly which tracker has moved, and then access the tracker's new
-    // 4x4 transformation matrix with event->getTransform().
-
-	// We will use trackers when we do a virtual reality assignment. For now, you can ignore this input type.
 }
 
 void HairSimulation::reloadShaders()
@@ -154,7 +133,6 @@ void HairSimulation::onRenderGraphicsScene(const VRGraphicsState &renderState) {
 	_shader.setUniform("tangent_mat", mat3(model));
 	_shader.setUniform("eye_world", eye_world);
     
-    
     //Cook-Torrance constants
     vec3 ambientReflectionCoeff = vec3(0.4125, 0.275, 0.0375);
     vec3 diffuseReflectionCoeff = vec3(0.78, 0.57, 0.11);
@@ -178,33 +156,6 @@ void HairSimulation::onRenderGraphicsScene(const VRGraphicsState &renderState) {
     
     _shader.setUniform("r0", r0);
     _shader.setUniform("m", m);
-    
-    //Marschner Model constants
-    vec3 diffuseColor = normalize(vec3(101, 67, 33));
-    vec3 specularColor1 = max(vec3(0,0,0), (diffuseColor - vec3(.5,.5,.5)));
-    vec3 specularColor2 = max(vec3(0,0,0), (diffuseColor - vec3(.1,.1,.1)));;
-    vec3 lightColor = vec3(1.0,1.0,1.0);
-    
-    float primaryShift = 10;
-    float secondaryShift = 5;
-    float specExp1 = 27.9;
-    float specExp2 = 17.9;
-    
-    _shader.setUniform("diffuseColor", diffuseColor);
-    _shader.setUniform("specularColor1", specularColor1);
-    _shader.setUniform("specularColor2", specularColor2);
-    _shader.setUniform("lightColor", lightColor);
-    
-    _shader.setUniform("primaryShift", primaryShift);
-    _shader.setUniform("secondaryShift", secondaryShift);
-    _shader.setUniform("specExp1", specExp1);
-    _shader.setUniform("specExp2", specExp2);
-    
-    
-    
-    //_shader.setUniform("lookUp1", _lookUp1);
-    //_shader.setUniform("lookUp2", _lookUp2);
-    
     
     _shader.setUniform("lightPosition", _lightPosition);
     
@@ -305,7 +256,6 @@ void HairSimulation::LoadHairModel( const char *filename, cyHairFile &hairfile, 
     }
     centroid /= pointCount;
     cout<<"Centroid: "<< centroid.x<<" "<<centroid.y<<" "<<centroid.z<<endl;
-
 }
 
 void HairSimulation::DrawHairModel( const cyHairFile &hairfile, float *dirs )
