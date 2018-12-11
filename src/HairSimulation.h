@@ -74,7 +74,9 @@ private:
     
     glm::vec4 _lightPosition;
     bool _drawLightVector;
-    vec3 _centroid;
+    
+    std::shared_ptr<Texture> _lookUp1;
+    std::shared_ptr<Texture> _lookUp2;
 
 	virtual void reloadShaders();
 	GLSLProgram _shader;

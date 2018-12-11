@@ -4,8 +4,6 @@
 
 uniform vec3 eye_world;
 
-uniform float r0;
-uniform float m;
 
 // These get passed in from the vertex shader and are interpolated (varying) properties
 // change for each pixel across the triangle:
@@ -13,79 +11,82 @@ in vec4 interpSurfPosition;
 in vec3 interpSurfTangent;
 in vec3 color;
 
+//Marschner constants
+uniform sampler2D lookUp1;
+uniform sampler2D lookUp2;
+
 
 // This is an out variable for the final color we want to render this fragment.
 out vec4 fragColor;
 
-// TODO: add other material properties variables
-uniform vec3 ambientReflectionCoeff;
-uniform vec3 diffuseReflectionCoeff;
-uniform vec3 specularReflectionCoeff;
-
-// TODO: Light Properties
-uniform vec3 ambientLightIntensity;
-uniform vec3 diffuseLightIntensity;
-uniform vec3 specularLightIntensity;
-
 uniform vec4 lightPosition;
 
 void main() {
-    
     vec3 T = normalize(interpSurfTangent);
     vec3 E = normalize(eye_world - interpSurfPosition.xyz);
-    vec3 BN = cross(T, E);
-    vec3 N = cross(BN, T);
     vec3 L = normalize(lightPosition.xyz-interpSurfPosition.xyz);
-    vec3 H = normalize(L+E);
-    float NdotH = clamp(dot(N,H), 0.0, 1.0);
-    float EdotH = clamp(dot(E,H), 0.0, 1.0);
-    float NdotE = clamp(dot(N,E), 0.0, 1.0);
-    float NdotL = clamp(dot(N,L), 0.0, 1.0);
     
-    //Calculating N components
+    float AmbientCol = 0.0;
+    float DiffuseCol = 0.75;
+    int PointLightColor = 1;
+    vec2 fuv1;
+    vec3 angles;
+    fuv1.x = dot(L, T);
+    fuv1.y = dot(E, T);
+    angles.xy = 0.5 + 0.5*fuv1; // ?
     
-	// Tell OpenGL to use the r,g,b compenents of finalColor for the color of this fragment (pixel).
+    vec3 lightPerp = L - fuv1.x*T;
+    vec3 eyePerp = E - fuv1.y*T;
+    float cosPhi = dot(E,L)*inversesqrt(dot(eyePerp,eyePerp)*dot(lightPerp,lightPerp));
+    angles.z = 0.5*cosPhi + 0.5;
+    
+    vec4 diffuseColor;
+    vec3 ambientColor;
+    float diffuse = sqrt(max(0, 1 - fuv1.x*fuv1.x));
+    diffuseColor.rgb = diffuse*color*DiffuseCol;
+    ambientColor = color * AmbientCol;
+    
+    float Rcol = 1.87639;
+    float TTcol = 3.70201;
+    
+    vec2 uv1 = angles.xy;
+    vec4 m = texture(lookUp1, uv1);
+    
+    vec2 uv2;
+    uv2.x = cos((asin(2 * angles.x - 1) - asin(2 * angles.y - 1)) / 2) * 0.5 + 0.5;
+    uv2.y = angles.z;
+    vec4 ntt = texture(lookUp2,uv2);
+    
+    vec3 lighting;
+    float x = m.r * ntt.a * Rcol;
+    lighting = vec3(x,x,x);
+    lighting = m.b * ntt.rgb * TTcol;
+    lighting += diffuseColor.rgb;
+    
+    vec4 col;
+    col.rgb = lighting + diffuseColor.rgb*0.2 + ambientColor;
+    col.a = diffuseColor.a;
+    
+    /*
+    float sinThetaI = dot(L, T);
+    float sinThetaO = dot(E, T);
+    
+    vec3 lightPerp = L - sinThetaI * T;
+    vec3 eyePerp = E - sinThetaO * T;
+    float cosPhiD = dot(eyePerp, lightPerp) * pow(dot(eyePerp, eyePerp) * dot(lightPerp, lightPerp), -0.5);
+    
+    vec4 M = texture(lookUp1, vec2(sinThetaI, sinThetaO));
+    float cosThetaD = M.a;
+    
+    vec4 N = texture(lookUp2, vec2(cosPhiD, cosThetaD));
+    
+    vec3 S = vec3((M.x * N.x), (M.y * N.y), (M.z * N.z));
+     */
+    
     if (color == vec3(0)){
-        fragColor = vec3(1.0,1.0,1.0,1.0);
+        fragColor = vec4(1.0,1.0,1.0,1.0);
     }
     else{
-        fragColor = HairLighting(T, N);
+        fragColor = col;
     }
-}
-
-vec3 ShiftTangent (vec3 T, vec3 N, float shift){
-    vec3 shiftedT = T + shift * N;
-    return normalize(shiftedT);
-}
-
-float StrandSpecular (vec3 T, vec3 E, vec3 L, float exponent){
-    vec3 H = normalize(L+E);
-    float TdotH = dot(T,H);
-    float sinTH = sqrt(1.0 - TdotH*TdotH);
-    float dirAtten = smoothstep(-1.0, 0.0, TdotH);
-    return dirAtten * pow(sinTH, exponent);
-}
-
-vec4 HairLighting(vec3 T, vec3 N, vec3 L, vec3 E, vec2 uv, float ambOcc){
-    // shift tangents
-    float shiftTex = tex2D(tSpecShift, uv) - 0.5;
-    vec3 t1 = ShiftTangent(T, N, primaryShift + shiftTex);
-    vec3 t2 = ShiftTangent(T, N, secondaryShift + shiftTex);
-    
-    // diffuse lighting: the lerp shifts the shadow boundary for a softer look
-    vec3 diffuse = saturate(lerp(0.25, 1.0, dot(N,L)));
-    diffuse *= diffuseColor;
-    
-    // specualr lighting
-    vec3 specular = specularColor1 * StrandSpecular(t1, E, L, specExp1);
-    
-    // add second specular term, modulated with noise texture
-    float specMask = tex2D(tSpecMask, uv); // approximate sparkles using texture
-    specular += specularColor2 * specMask * StrandSpecular(t2, E, L, specExp2);
-    
-    // final color assembly
-    vec4 c;
-    c.rgb = (diffuse + specular)  * tex2D (tBase, uv) * lightColor;
-    c.rgb = *= ambOcc; // modulate color by ambient occlusion term
-    c.a = tex2D(tAlpha, uv) // read alpha texture
 }

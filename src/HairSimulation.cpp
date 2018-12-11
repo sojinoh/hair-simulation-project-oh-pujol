@@ -17,7 +17,6 @@ HairSimulation::HairSimulation(int argc, char** argv) : VRApp(argc, argv)
     _turntable.reset(new TurntableManipulator(250, 0.3, 0.5));
     _turntable->setCenterPosition(vec3(0, 15, 10));
     
-    _centroid = vec3(0,0,0);
     _lightPosition = vec4(0,-80,80,1.0);
     _drawLightVector = true;
     mouseDown = false;
@@ -65,7 +64,7 @@ void HairSimulation::onTrackerMove(const VRTrackerEvent &event) {
 void HairSimulation::reloadShaders()
 {
     _shader.compileShader("hair.vert", GLSLShader::VERTEX);
-    _shader.compileShader("variationHair.frag", GLSLShader::FRAGMENT);
+    _shader.compileShader("fancyHair.frag", GLSLShader::FRAGMENT);
     _shader.link();
     _shader.use();
 }
@@ -106,6 +105,14 @@ void HairSimulation::onRenderGraphicsContext(const VRGraphicsState &renderState)
 		// This load shaders from disk, we do it once when the program starts up.
 		reloadShaders();
         
+        _lookUp1 = Texture::create2DTextureFromFile("lookup1.png");
+        _lookUp1->setTexParameteri(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        _lookUp1->setTexParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        
+        _lookUp2 = Texture::create2DTextureFromFile("lookup2.png");
+        _lookUp2->setTexParameteri(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        _lookUp2->setTexParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        
         LoadHairModel("dark.hair", hair, dirs);
     }
 }
@@ -142,22 +149,23 @@ void HairSimulation::onRenderGraphicsScene(const VRGraphicsState &renderState) {
 	_shader.setUniform("view_mat", view);
 	_shader.setUniform("projection_mat", projection);
 	
-    
     _shader.setUniform("lightView", lightView);
 	_shader.setUniform("model_mat", model);
 	_shader.setUniform("tangent_mat", mat3(model));
 	_shader.setUniform("eye_world", eye_world);
     
+    
+    //Cook-Torrance constants
     vec3 ambientReflectionCoeff = vec3(0.4125, 0.275, 0.0375);
     vec3 diffuseReflectionCoeff = vec3(0.78, 0.57, 0.11);
     vec3 specularReflectionCoeff = vec3(0.99, 0.94, 0.80);
     
-    float m = 0.55;
-    float r0 = 0.7;
-    
     vec3 ambientLightIntensity = vec3(0.4, 0.4, 0.4);
     vec3 diffuseLightIntensity = vec3(0.6, 0.6, 0.6);
     vec3 specularLightIntensity = vec3(1.0, 1.0, 1.0);
+    
+    float m = 0.55;
+    float r0 = 0.7;
     
     _shader.setUniform("ambientReflectionCoeff", ambientReflectionCoeff);
     _shader.setUniform("diffuseReflectionCoeff", diffuseReflectionCoeff);
@@ -170,6 +178,33 @@ void HairSimulation::onRenderGraphicsScene(const VRGraphicsState &renderState) {
     
     _shader.setUniform("r0", r0);
     _shader.setUniform("m", m);
+    
+    //Marschner Model constants
+    vec3 diffuseColor = normalize(vec3(101, 67, 33));
+    vec3 specularColor1 = max(vec3(0,0,0), (diffuseColor - vec3(.5,.5,.5)));
+    vec3 specularColor2 = max(vec3(0,0,0), (diffuseColor - vec3(.1,.1,.1)));;
+    vec3 lightColor = vec3(1.0,1.0,1.0);
+    
+    float primaryShift = 10;
+    float secondaryShift = 5;
+    float specExp1 = 27.9;
+    float specExp2 = 17.9;
+    
+    _shader.setUniform("diffuseColor", diffuseColor);
+    _shader.setUniform("specularColor1", specularColor1);
+    _shader.setUniform("specularColor2", specularColor2);
+    _shader.setUniform("lightColor", lightColor);
+    
+    _shader.setUniform("primaryShift", primaryShift);
+    _shader.setUniform("secondaryShift", secondaryShift);
+    _shader.setUniform("specExp1", specExp1);
+    _shader.setUniform("specExp2", specExp2);
+    
+    
+    
+    //_shader.setUniform("lookUp1", _lookUp1);
+    //_shader.setUniform("lookUp2", _lookUp2);
+    
     
     _shader.setUniform("lightPosition", _lightPosition);
     
@@ -261,13 +296,15 @@ void HairSimulation::LoadHairModel( const char *filename, cyHairFile &hairfile, 
     // unbind the vao
     glBindVertexArray(0);
     
+    vec3 centroid;
+    
     const float* points = hairfile.GetPointsArray();
     for ( int i=0; i < pointCount; i+=3 ) {
         vec3 point = vec3 (points[i], points[i+1], points[i+2]);
-        _centroid += point;
+        centroid += point;
     }
-    _centroid /= pointCount;
-    cout<<"Centroid: "<< _centroid.x<<" "<<_centroid.y<<" "<<_centroid.z<<endl;
+    centroid /= pointCount;
+    cout<<"Centroid: "<< centroid.x<<" "<<centroid.y<<" "<<centroid.z<<endl;
 
 }
 
