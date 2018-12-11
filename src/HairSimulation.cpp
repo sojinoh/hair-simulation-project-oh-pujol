@@ -18,7 +18,7 @@ HairSimulation::HairSimulation(int argc, char** argv) : VRApp(argc, argv)
     _turntable->setCenterPosition(vec3(0, 15, 10));
     
     _lightPosition = vec4(0,-80,80,1.0);
-    _drawLightVector = true;
+    _drawLightVector = false;
     mouseDown = false;
 }
 
@@ -26,6 +26,18 @@ HairSimulation::~HairSimulation()
 {
     delete[]dirs;
 	shutdown();
+}
+
+void HairSimulation::onAnalogChange(const VRAnalogEvent &event) {
+    // This routine is called for all Analog_Change events.  Check event->getName()
+    // to see exactly which analog input has been changed, and then access the
+    // new value with event->getValue().
+    
+    //if (event.getName() == "FrameStart") {
+    //    _lastTime = _curFrameTime;
+    //    _curFrameTime = event.getValue();
+    //}
+    
 }
 
 void HairSimulation::onButtonDown(const VRButtonEvent &event) {
@@ -40,10 +52,18 @@ void HairSimulation::onCursorMove(const VRCursorEvent &event) {
     _turntable->onCursorMove(event);
 }
 
+void HairSimulation::onTrackerMove(const VRTrackerEvent &event) {
+    // This routine is called for all Tracker_Move events.  Check event->getName()
+    // to see exactly which tracker has moved, and then access the tracker's new
+    // 4x4 transformation matrix with event->getTransform().
+    
+    // We will use trackers when we do a virtual reality assignment. For now, you can ignore this input type.
+}
+
 void HairSimulation::reloadShaders()
 {
     _shader.compileShader("hair.vert", GLSLShader::VERTEX);
-    _shader.compileShader("fancyHair.frag", GLSLShader::FRAGMENT);
+    _shader.compileShader("marschnerHair.frag", GLSLShader::FRAGMENT);
     _shader.link();
     _shader.use();
 }

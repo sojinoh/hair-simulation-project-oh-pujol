@@ -15,18 +15,15 @@ const float MAX_COLOR_START = 0.3;
 const float HAIR_SHININESS = 50.0;
 
 // Fill light properties
-const vec4 FILL_LIGHT_POS = vec4(-2.0, 1.0, 1.0, 1.0);
 const float FILL_LIGHT_INTENSITY_HAIR = 0.6;
-
-// Textures
-uniform sampler2D diffuseRamp;
-uniform sampler2D specularRamp;
 
 uniform vec3 eye_world;
 uniform mat4 projection_mat;
 uniform vec4 lightPosition;
 uniform mat4 view_mat;
 uniform mat4 lightView;
+uniform vec3 diffuseLightIntensity;
+uniform vec3 specularLightIntensity;
 
 // These get passed in from the vertex shader and are interpolated (varying) properties
 // change for each pixel across the triangle:
@@ -39,25 +36,24 @@ out vec4 fragColor;
 vec3 colorContribution(
 in vec4 position_ES, in vec3 tangent_ES, in vec4 lightPosition_ES, in float colorVariation)
 {
-    vec4 toLight_N = normalize(lightPosition_ES - position_ES);
-    vec3 tangent_N = normalize(tangent_ES);
-    vec3 toEye_N = normalize(-position_ES.xyz);
-    vec3 h_N = normalize(toEye_N + toLight_N.xyz);
+    vec4 L = normalize(lightPosition_ES - position_ES); //light vector
+    vec3 T = normalize(tangent_ES); //tangent vector
+    vec3 E = normalize(eye_world - position_ES.xyz); //eye vector
     
-    float diffuse = sqrt(1. - abs(dot(tangent_N, toLight_N.xyz)));
-    float specular = pow(sqrt(1. - abs(dot(tangent_N, h_N))), HAIR_SHININESS);
+    vec3 H = normalize(E + L.xyz); //half vector
+    
+    float diffuse = sqrt(1.0 - abs(dot(T, L.xyz)));
+    float specular = pow(sqrt(1.0 - abs(dot(T, H))), HAIR_SHININESS);
     
     // Add color variation
     vec3 colorMultiplier = vec3(1.0 + colorVariation * (2.0 * colorVariation - 1.0));
     
-    // Add color gradient
-    colorMultiplier *= mix(MIN_COLOR, 1.0, smoothstep(MIN_COLOR_END, MAX_COLOR_START, interpSurfPosition.x));
-    
-    return (vec3(0.6, 0.6, 0.6) * diffuse + vec3(1.0, 1.0, 1.0) * specular) * color * colorMultiplier;
+    return (diffuseLightIntensity * diffuse + specularLightIntensity * specular) * color;
 }
 
 void main() {
-    float colorVariation = color.r; //colorVariation_te = texture(noiseTexture, triangleFace[0].xy*gl_TessCoord.yy).r;
+    //colorVariation_te = texture(noiseTexture, triangleFace[0].xy*gl_TessCoord.yy).r;
+    float colorVariation = color.r;
     mat4 eyeToLight = projection_mat * lightView * inverse(view_mat);
     vec4 position_lightSpace = eyeToLight * interpSurfPosition;
     vec4 color;
@@ -68,10 +64,8 @@ void main() {
     //color.xyz *= GetTransparencyArray()(position_lightSpace);
     
     // Fill light
-    lightPos = view_mat * FILL_LIGHT_POS;
+    lightPos = view_mat * lightPosition;
     color.xyz += FILL_LIGHT_INTENSITY_HAIR * colorContribution(interpSurfPosition, interpSurfTangent, lightPos, colorVariation);
-    
     fragColor.xyz = color.xyz;
-    
     fragColor.a = 1.0;
 }
