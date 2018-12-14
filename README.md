@@ -1,6 +1,6 @@
 # Let Hair be Light
-  <img align="left" height = "200px" width="200px" src="./images/blond_hair.png">
-  <img align="right"  height = "200px" width="200px" src="./images/brown_hair.png">
+  <img height = "400px" width="250px" src="./images/blond_hair.png">
+  <img height = "400px" width="250px" src="./images/brown_hair.png">
   
 Figure 1:  Blond and brown hair shaded with Marschner spectral lighting
 
