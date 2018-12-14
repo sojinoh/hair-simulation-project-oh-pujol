@@ -1,7 +1,8 @@
 # Let Hair be Light
-![Image of Final Hair](./images/bunnies.png)
-![Image of Shaded Bunnies](./images/bunnies.png)
-Figure 1:  Mr. Bunny shaded two different ways.  On the left, a shinny “brass bunny”.  On the right, a “cartoon bunny”.  Both are implemented using OpenGL shader programs.
+![Image of Blond Hair](./images/blond_hair.png)
+![Image of Brown Hair](./images/brown_hair.png)
+Figure 1:  Blond and brown hair shaded with Marschner spectral lighting
+
 ## 1. Introduction
 
 ## 2. Overview of Requirements and Suggested Approach
