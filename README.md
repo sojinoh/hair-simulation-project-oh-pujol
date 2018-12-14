@@ -24,7 +24,7 @@ In order to shade the hair we implemented our own vertex and fragment shaders. T
 _shader.compileShader("marschnerHair.frag", GLSLShader::FRAGMENT);
 ```
 *marschnerHair.frag* shader outputs our marschner shading implementation, and *variationHair.frag* and *basicHair.frag* output the hair variations technique and Cook-Torrance metal shading technique respectively.
-<img height = "400px" width="250px" src="./images/marsch.png"> <img height = "400px" width="250px" src="./images/variations.png"> <img height = "400px" width="250px" src="./images/cook.png">
+<img height = "450px" width="400px" src="./images/marsch.png"> <img height = "450px" width="400px" src="./images/variation.png"> <img height = "450px" width="400px" src="./images/cook.png">
 
 ## 4. Important performance issues & known bugs
 Our spectral lighting doesn't show up on the hair exactly the same with each shader. More then being just a difference in equations the light doesn't seem to be positioned in the right place when we use the hair variations version of the frag. When using the variations.frag some computer's program will lag because of the computational cost of the equations.
