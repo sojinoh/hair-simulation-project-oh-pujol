@@ -69,9 +69,6 @@ void TurntableManipulator::onCursorMove(const VRCursorEvent &event) {
 }
 
 glm::vec3 TurntableManipulator::getPos() const {
-    //glm::vec3 direction(cos(around)*cos(up)*distance,
-                 // sin(up)*distance,
-                //  sin(around)*cos(up)*distance);
     glm::vec3 direction(-(sin(around)*cos(up)*distance),
                         -(cos(around)*cos(up)*distance),
                         sin(up)*distance);

@@ -29,12 +29,15 @@ void main() {
     float AmbientCol = 0.0;
     float DiffuseCol = 0.75;
     int PointLightColor = 1;
+    
+    // Compute longitudinal angles
     vec2 fuv1;
     vec3 angles;
     fuv1.x = dot(L, T);
     fuv1.y = dot(E, T);
     angles.xy = 0.5 + 0.5*fuv1;
     
+    // Compute the azimuthal angle
     vec3 lightPerp = L - fuv1.x*T;
     vec3 eyePerp = E - fuv1.y*T;
     float cosPhi = dot(E,L)*inversesqrt(dot(eyePerp,eyePerp)*dot(lightPerp,lightPerp));
@@ -49,9 +52,11 @@ void main() {
     float Rcol = 1.87639;
     float TTcol = 3.70201;
     
+    // Compute the longitudinal reflectance component
     vec2 uv1 = angles.xy;
     vec4 m = texture(lookUp1, uv1);
     
+    // Compute the azimuthal reflectance component
     vec2 uv2;
     uv2.x = cos((asin(2 * angles.x - 1) - asin(2 * angles.y - 1)) / 2) * 0.5 + 0.5;
     uv2.y = angles.z;

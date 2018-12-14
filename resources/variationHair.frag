@@ -47,12 +47,11 @@ in vec4 position_ES, in vec3 tangent_ES, in vec4 lightPosition_ES, in float colo
     
     // Add color variation
     vec3 colorMultiplier = vec3(1.0 + colorVariation * (2.0 * colorVariation - 1.0));
-    
+
     return (diffuseLightIntensity * diffuse + specularLightIntensity * specular) * color;
 }
 
 void main() {
-    //colorVariation_te = texture(noiseTexture, triangleFace[0].xy*gl_TessCoord.yy).r;
     float colorVariation = color.r;
     mat4 eyeToLight = projection_mat * lightView * inverse(view_mat);
     vec4 position_lightSpace = eyeToLight * interpSurfPosition;
@@ -61,7 +60,6 @@ void main() {
     // Key light
     vec4 lightPos = view_mat * vec4(lightPosition);
     color.xyz = colorContribution(interpSurfPosition, interpSurfTangent, lightPos, colorVariation);
-    //color.xyz *= GetTransparencyArray()(position_lightSpace);
     
     // Fill light
     lightPos = view_mat * lightPosition;
