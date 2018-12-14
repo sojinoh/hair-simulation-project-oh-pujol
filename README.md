@@ -17,14 +17,14 @@ The *cyHairFile.h* file creates the hair file ojbect to be drawn based on the *.
 ```
 LoadHairModel("dark.hair", hair, dirs);
 ```
-We have two options for loading the hair. Either using the *dark.hair* file or the *straight.hair* file creating the brown and blond hair respectively.
+We have two options for loading the hair. You can use the *dark.hair* file or the *straight.hair* file creating the brown and blond hair respectively.
 
 In order to shade the hair we implemented our own vertex and fragment shaders. The same vertex shader is used for each method and we created 3 different options for fragment shading in line 66.
 ```
 _shader.compileShader("marschnerHair.frag", GLSLShader::FRAGMENT);
 ```
 *marschnerHair.frag* shader outputs our marschner shading implementation, and *variationHair.frag* and *basicHair.frag* output the hair variations technique and Cook-Torrance metal shading technique respectively.
-<img height = "400px" width="250px" src="./images/brown_hair.png"> <img height = "400px" width="250px" src="./images/brown_hair.png"> <img height = "400px" width="250px" src="./images/brown_hair.png">
+<img height = "400px" width="250px" src="./images/marsch.png"> <img height = "400px" width="250px" src="./images/variations.png"> <img height = "400px" width="250px" src="./images/cook.png">
 
 ## 4. Important performance issues & known bugs
 Our spectral lighting doesn't show up on the hair exactly the same with each shader. More then being just a difference in equations the light doesn't seem to be positioned in the right place when we use the hair variations version of the frag. When using the variations.frag some computer's program will lag because of the computational cost of the equations.
