@@ -2,8 +2,17 @@
 
 ## 1. Introduction
 
+This is a final project for COMP 465 class. Hair rendering takes a big part in making the animation look realistic and we wanted to explore different hair rendering techniques. Based on Yuksel's hair model files, we experimented different hair shading techniques to make hair models look realistic. Three different hair shaders are implemented in this project which are based on Cook-Torrance model (*basicHair.frag*), [color variation model](https://github.com/mravella/hair) (*variationHair.frag*), and Marschner Reflectance Model (*marschnerHair.frag*), respectively.
+
 ## 2. How to Build & Run
-Once you have cloned the repository, 
+Once you have cloned the repository, configure and generate the project using cmake. 
+```
+cd hair-simulation-project-oh-pujol
+mkdir build
+cd build
+cmake-gui ..
+```
+Once the project is generated, open the project using Xcode or Visual Studio. 
 
 ## 3. Overall architecture & results
 
